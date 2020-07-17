@@ -2,6 +2,8 @@ defmodule AuthorizationWithPow.Users.User do
   use Ecto.Schema
   use Pow.Ecto.Schema
 
+  import Ecto.Changeset
+
   schema "users" do
     pow_user_fields()
 
@@ -12,14 +14,14 @@ defmodule AuthorizationWithPow.Users.User do
     timestamps()
   end
 
-  def changeset(user_or_changeset, attrs) do
-    user_or_changeset
+  def changeset(user, attrs) do
+    user
     |> pow_changeset(attrs)
-    |> Ecto.Changeset.cast(attrs, [:username, :first_name, :last_name])
-    |> Ecto.Changeset.validate_required([:username, :first_name, :last_name])
-    |> Ecto.Changeset.validate_length(:first_name, min: 2)
-    |> Ecto.Changeset.validate_length(:last_name, min: 2)
-    |> Ecto.Changeset.unique_constraint(:email)
-    |> Ecto.Changeset.unique_constraint(:username)
+    |> cast(attrs, [:username, :first_name, :last_name])
+    |> validate_required([:username, :first_name, :last_name])
+    |> validate_length(:first_name, min: 2)
+    |> validate_length(:last_name, min: 2)
+    |> unique_constraint(:email)
+    |> unique_constraint(:username)
   end
 end
