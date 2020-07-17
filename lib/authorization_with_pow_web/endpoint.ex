@@ -50,5 +50,6 @@ defmodule AuthorizationWithPowWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug Pow.Plug.Session, otp_app: :authorization_with_pow
   plug AuthorizationWithPowWeb.Router
 end
