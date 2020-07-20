@@ -17,6 +17,9 @@
   <%= password_input f, :password %>
   <%= error_tag f, :password %>
 
+  <%= label f, :persistent_session, "Remember me" %>
+  <%= checkbox f, :persistent_session %>
+
   <div>
     <%= submit "Sign in" %>
   </div>
