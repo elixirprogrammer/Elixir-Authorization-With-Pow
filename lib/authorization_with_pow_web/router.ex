@@ -1,6 +1,8 @@
 defmodule AuthorizationWithPowWeb.Router do
   use AuthorizationWithPowWeb, :router
   use Pow.Phoenix.Router
+  use Pow.Extension.Phoenix.Router,
+    extensions: [PowResetPassword, PowEmailConfirmation]
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -36,6 +38,7 @@ defmodule AuthorizationWithPowWeb.Router do
     pipe_through :browser
 
     pow_routes()
+    pow_extension_routes()
   end
 
   scope "/", AuthorizationWithPowWeb do

@@ -29,10 +29,13 @@ config :phoenix, :json_library, Jason
 config :authorization_with_pow, :pow,
   user: AuthorizationWithPow.Users.User,
   repo: AuthorizationWithPow.Repo,
-  extensions: [PowPersistentSession],
+  extensions: [PowPersistentSession, PowResetPassword],
   controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
   web_module: AuthorizationWithPowWeb,
-  messages_backend: AuthorizationWithPowWeb.Pow.Messages
+  messages_backend: AuthorizationWithPowWeb.Pow.Messages,
+  mailer_backend: AuthorizationWithPowWeb.Pow.Mailer,
+  web_mailer_module: AuthorizationWithPowWeb
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

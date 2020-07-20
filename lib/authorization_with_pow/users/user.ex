@@ -1,6 +1,9 @@
 defmodule AuthorizationWithPow.Users.User do
   use Ecto.Schema
   use Pow.Ecto.Schema
+  use Pow.Extension.Ecto.Schema,
+    extensions: [PowResetPassword]
+
 
   import Ecto.Changeset
 
@@ -19,6 +22,7 @@ defmodule AuthorizationWithPow.Users.User do
   def changeset(user, attrs) do
     user
     |> pow_changeset(attrs)
+    |> pow_extension_changeset(attrs)
     |> cast(attrs, [:username, :first_name, :last_name])
     |> validate_required([:username, :first_name, :last_name])
     |> validate_length(:first_name, min: 2)

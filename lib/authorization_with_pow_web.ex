@@ -51,6 +51,17 @@ defmodule AuthorizationWithPowWeb do
     end
   end
 
+  def mailer_view do
+    quote do
+      use Phoenix.View, root: "lib/authorization_with_pow_web/templates",
+                        namespace: AuthorizationWithPowWeb
+
+      use Phoenix.HTML
+    end
+  end
+
+
+
   def live_component do
     quote do
       use Phoenix.LiveComponent
