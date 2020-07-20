@@ -4,6 +4,8 @@ defmodule AuthorizationWithPow.Users.User do
 
   import Ecto.Changeset
 
+  alias AuthorizationWithPow.Users.User
+
   schema "users" do
     pow_user_fields()
 
@@ -23,5 +25,9 @@ defmodule AuthorizationWithPow.Users.User do
     |> validate_length(:last_name, min: 2)
     |> unique_constraint(:email)
     |> unique_constraint(:username)
+  end
+
+  def change_user(%User{} = user, attrs \\ %{}) do
+    User.changeset(user, attrs)
   end
 end

@@ -20,6 +20,11 @@ defmodule AuthorizationWithPowWeb.Router do
       error_handler: Pow.Phoenix.PlugErrorHandler
   end
 
+  pipeline :not_authenticated do
+    plug Pow.Plug.RequireNotAuthenticated,
+      error_handler: AuthorizationWithPowWeb.AuthErrorHandler
+  end
+
   scope "/", AuthorizationWithPowWeb do
     pipe_through :browser
 
@@ -34,8 +39,18 @@ defmodule AuthorizationWithPowWeb.Router do
   end
 
   scope "/", AuthorizationWithPowWeb do
-    pipe_through [:browser, :protected]
+    pipe_through [:browser, :not_authenticated]
 
+
+    post "/signup", RegistrationController, :create, as: :signup
+    get "/login", SessionController, :new, as: :login
+    post "/login", SessionController, :create, as: :login
+  end
+
+
+
+  scope "/", AuthorizationWithPowWeb do
+    pipe_through [:browser, :protected]
     # Add your protected routes here
   end
 

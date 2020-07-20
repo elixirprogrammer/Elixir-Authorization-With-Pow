@@ -29,7 +29,8 @@ config :phoenix, :json_library, Jason
 config :authorization_with_pow, :pow,
   user: AuthorizationWithPow.Users.User,
   repo: AuthorizationWithPow.Repo,
-  web_module: AuthorizationWithPowWeb
+  web_module: AuthorizationWithPowWeb,
+  messages_backend: AuthorizationWithPowWeb.Pow.Messages
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -7,15 +7,27 @@
     </div>
   <% end %>
 
-  <%= label f, :current_password %>
-  <%= password_input f, :current_password %>
-  <%= error_tag f, :current_password %>
-
   <%= label f, Pow.Ecto.Schema.user_id_field(@changeset) %>
   <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset) %>
   <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset) %>
 
-  <%= label f, :password %>
+  <%= label f, :username %>
+  <%= text_input f, :username %>
+  <%= error_tag f, :username %>
+
+  <%= label f, :first_name %>
+  <%= text_input f, :first_name %>
+  <%= error_tag f, :first_name %>
+
+  <%= label f, :last_name %>
+  <%= text_input f, :last_name %>
+  <%= error_tag f, :last_name %>
+
+  <%= label f, :current_password, "Current password (we need your current password to confirm your changes)" %>
+  <%= password_input f, :current_password %>
+  <%= error_tag f, :current_password %>
+
+  <%= label f, :password, "Password (leave blank if you don't want to change it)" %>
   <%= password_input f, :password %>
   <%= error_tag f, :password %>
 
@@ -28,3 +40,4 @@
   </div>
 <% end %>
 
+<%= link "Cancel Account", to: Routes.pow_registration_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"]  %>
