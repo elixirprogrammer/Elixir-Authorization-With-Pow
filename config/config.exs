@@ -29,6 +29,8 @@ config :phoenix, :json_library, Jason
 config :authorization_with_pow, :pow,
   user: AuthorizationWithPow.Users.User,
   repo: AuthorizationWithPow.Repo,
+  extensions: [PowPersistentSession],
+  controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
   web_module: AuthorizationWithPowWeb,
   messages_backend: AuthorizationWithPowWeb.Pow.Messages
 
