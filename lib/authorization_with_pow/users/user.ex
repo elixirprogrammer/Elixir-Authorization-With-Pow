@@ -8,6 +8,7 @@ defmodule AuthorizationWithPow.Users.User do
   import Ecto.Changeset
 
   alias AuthorizationWithPow.Users.User
+  alias AuthorizationWithPow.Repo
 
   schema "users" do
     pow_user_fields()
@@ -33,5 +34,9 @@ defmodule AuthorizationWithPow.Users.User do
 
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
+  end
+
+  def profile(param) do
+    Repo.get_by(User, username: param)
   end
 end

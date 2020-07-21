@@ -21,6 +21,7 @@
             <% end %> -->
             <%= if Pow.Plug.current_user(@conn) do %>
               <span><%= @current_user.username %></span>
+              <span><%= link "Profile", to: Routes.user_path(@conn, :profile, @current_user.username) %></span>
               <span><%= link "Settings", to: Routes.pow_registration_path(@conn, :edit) %></span>
               <span><%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), method: :delete %></span>
             <% else %>

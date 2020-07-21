@@ -50,12 +50,20 @@ defmodule AuthorizationWithPowWeb.Router do
     post "/login", SessionController, :create, as: :login
   end
 
+  scope "/u", AuthorizationWithPowWeb do
+    pipe_through :browser
+
+    get "/:username", UserController, :profile, as: :user
+  end
+
 
 
   scope "/", AuthorizationWithPowWeb do
     pipe_through [:browser, :protected]
     # Add your protected routes here
+
   end
+
 
 
 
