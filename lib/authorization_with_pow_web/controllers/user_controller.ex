@@ -3,8 +3,8 @@ defmodule AuthorizationWithPowWeb.UserController do
 
   alias AuthorizationWithPow.Users.User
 
-  def profile(conn, params) do
-    user = User.profile(params["username"])
+  def profile(conn, %{"username" => username}) do
+    user = User.profile(username)
 
     if user do
       render(conn, :profile, user: user)

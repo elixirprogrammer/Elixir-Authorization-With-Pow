@@ -53,7 +53,7 @@ defmodule AuthorizationWithPowWeb.Router do
   scope "/u", AuthorizationWithPowWeb do
     pipe_through :browser
 
-    get "/:username", UserController, :profile, as: :user
+    get "/:username", UserController, :profile
   end
 
 

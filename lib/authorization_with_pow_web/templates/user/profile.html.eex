@@ -1,1 +1,1 @@
-<h1><%= @user.username %></h1>
+<h2>Hello World, from <%= @user.username %>!</h2>
